@@ -1,0 +1,19 @@
+.sliders-main {
+  padding: 10px;
+}
+.sliders-main .sliders-img {
+  background-color: #eee;
+  padding: 10px 20px;
+  border-radius: 100px;
+}
+
+.slider-img-css img {
+  width: 160px;
+  margin-left: 15px;
+  object-fit: contain;
+}
+.slider-img-css img:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}

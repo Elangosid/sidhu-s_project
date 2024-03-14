@@ -1,0 +1,310 @@
+{\rtf1\ansi\deff0\nouicompat{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 import React, \{ useEffect, useState \} from 'react';\par
+import './profile.css';\par
+import \{ initializeApp \} from 'firebase/app';\par
+import \{\par
+  getStorage,\par
+  ref,\par
+  uploadBytesResumable,\par
+  getDownloadURL,\par
+\} from 'firebase/storage';\par
+import * as Realm from 'realm-web';\par
+import \{ useNavigate \} from 'react-router-dom';\par
+\par
+const REALM_APP_ID = 'application-1-zyzrj';\par
+const app = new Realm.App(\{ id: REALM_APP_ID \});\par
+\par
+const firebaseConfig = \{\par
+  apiKey: 'AIzaSyB3KiTZGa5Qpq54gZYHyPVNID_G0y6M0Yk',\par
+  authDomain: 'quikflo-64d8b.firebaseapp.com',\par
+  projectId: 'quikflo-64d8b',\par
+  storageBucket: 'quikflo-64d8b.appspot.com',\par
+  messagingSenderId: '172899289931',\par
+  appId: '1:172899289931:web:10223847c82ba5b5edb6ce',\par
+  measurementId: 'G-KY2KTP6V9W',\par
+\};\par
+const firebaseApp = initializeApp(firebaseConfig);\par
+const storage = getStorage(firebaseApp);\par
+\par
+const Profile = () => \{\par
+  const Navigate = useNavigate();\par
+\par
+  const [formData, setFormData] = useState(\{\par
+    FullName: '',\par
+    DOB: '',\par
+    Email: '',\par
+    ShopName: '',\par
+    Image: '',\par
+  \});\par
+  const [validationErrors, setValidationErrors] = useState(\{\par
+    FullName: null,\par
+    DOB: null,\par
+    Email: null,\par
+    ShopName: null,\par
+    Image: null,\par
+  \});\par
+  const [imagePreview, setImagePreview] = useState(null); // State to store the temporary URL of the uploaded image\par
+\par
+  const handleImageChange = (e) => \{\par
+    if (e.target.files[0]) \{\par
+      const image = e.target.files[0];\par
+      setFormData(\{ ...formData, Image: image \});\par
+      setValidationErrors(\{ ...validationErrors, Image: null \});\par
+      setImagePreview(URL.createObjectURL(image)); // Set the temporary URL for image preview\par
+    \}\par
+  \};\par
+\par
+  const handleFormSubmit = async (e) => \{\par
+    const MobileNo = localStorage.getItem('mobileNumber');\par
+    e.preventDefault();\par
+\par
+    // Validation\par
+    const errors = \{\};\par
+    if (!formData.FullName) \{\par
+      errors.FullName = 'Full Name is required';\par
+    \}\par
+    if (!formData.DOB) \{\par
+      errors.DOB = 'Date of Birth is required';\par
+    \}\par
+    if (!formData.Email) \{\par
+      errors.Email = 'Email is required';\par
+    \}\par
+    if (!formData.ShopName) \{\par
+      errors.ShopName = 'Shop Name is required';\par
+    \}\par
+    if (!formData.Image) \{\par
+      errors.Image = 'Image is required';\par
+    \}\par
+    setValidationErrors(errors);\par
+\par
+    if (Object.keys(errors).length > 0) \{\par
+      return;\par
+    \}\par
+\par
+    try \{\par
+      const user = app.currentUser;\par
+      const manufacturesCollection = user\par
+        .mongoClient('mongodb-atlas')\par
+        .db('QUIKFLO')\par
+        .collection('Retailer');\par
+      const dobTimestamp = formData.DOB\par
+        ? new Date(formData.DOB).toISOString()\par
+        : null;\par
+      const storageRef = ref(storage, `images/$\{formData.Type\}-$\{Date.now()\}`);\par
+      const uploadTask = uploadBytesResumable(storageRef, formData.Image);\par
+      const uploadSnapshot = await uploadTask;\par
+      const imageURL = await getDownloadURL(uploadSnapshot.ref);\par
+      const insertResult = await manufacturesCollection.insertOne(\{\par
+        MobileNo: MobileNo,\par
+        FullName: formData.FullName,\par
+        DOB: dobTimestamp,\par
+        ShopName: formData.ShopName,\par
+        Email: formData.Email,\par
+        Image: imageURL,\par
+      \});\par
+      console.log('Insert result:', insertResult);\par
+      const insertedId = insertResult.insertedId;\par
+      setFormData(\{\par
+        FullName: '',\par
+        DOB: '',\par
+        ShopName: '',\par
+        Email: '',\par
+        Image: null,\par
+      \});\par
+      Navigate('/retailer-kyc');\par
+      localStorage.setItem('retailerId', insertedId.toString());\par
+    \} catch (error) \{\par
+      console.error('Error submitting form data:', error);\par
+      setValidationErrors(\{\par
+        ...validationErrors,\par
+        Image: 'Error uploading image',\par
+      \}); // Set image error message\par
+    \}\par
+  \};\par
+\par
+  return (\par
+    <div className='profile-background'>\par
+      <div className='container container-profile'>\par
+        <div className='row profile-row'>\par
+          <div className='profile-box'>\par
+            <h2 className='profile-head mb-3'>Setup Profile</h2>\par
+            <form className='form-main' onSubmit=\{handleFormSubmit\}>\par
+              <div className='input-group mb-3 justify-content-center align-items-center d-flex'>\par
+                <input\par
+                  type='file'\par
+                  className='visually-hidden'\par
+                  id='imageInput'\par
+                  accept='image/*'\par
+                  onChange=\{handleImageChange\}\par
+                />\par
+                <div className='profile-label'>\par
+                  <label\par
+                    htmlFor='imageInput'\par
+                    className='profile-upload d-flex mt-3 justify-content-center'\par
+                  >\par
+                    \{imagePreview ? (\par
+                      <img\par
+                        src=\{imagePreview\}\par
+                        alt='Preview'\par
+                        style=\{\{\par
+                          width: '100%',\par
+                          height: '100%',\par
+                          borderRadius: '50%',\par
+                        \}\}\par
+                      />\par
+                    ) : (\par
+                      <i\par
+                        style=\{\{ fontSize: '2.5rem' \}\}\par
+                        className='bi bi-person-add mt-3'\par
+                      ></i>\par
+                    )\}\par
+                  </label>\par
+                  <span className='label-cam'>\par
+                    <i className='bi bi-camera text-white'></i>\par
+                  </span>\par
+                </div>\par
+              </div>\par
+              \{validationErrors.Image && (\par
+                <div className='text-danger small text-center mt-3'>\par
+                  \{validationErrors.Image\}\par
+                </div>\par
+              )\}\par
+              <div className='input-group mt-3 mb-3'>\par
+                <div className='input-group-prepend'>\par
+                  <span\par
+                    className='input-group-text profile-badge'\par
+                    id='basic-addon1'\par
+                  >\par
+                    <i className='bi bi-person-circle'></i>\par
+                  </span>\par
+                </div>\par
+                <input\par
+                  type='text'\par
+                  id='FullName'\par
+                  className='form-control profile-input'\par
+                  placeholder='Full Name'\par
+                  aria-label='Username'\par
+                  aria-describedby='basic-addon1'\par
+                  value=\{formData.FullName\}\par
+                  onChange=\{(e) => \{\par
+                    setFormData(\{ ...formData, FullName: e.target.value \});\par
+                    setValidationErrors(\{\par
+                      ...validationErrors,\par
+                      FullName: null,\par
+                    \});\par
+                  \}\}\par
+                />\par
+              </div>\par
+              \{validationErrors.FullName && (\par
+                <span className='text-danger small'>\par
+                  \{validationErrors.FullName\}\par
+                </span>\par
+              )\}\par
+              <div className='input-group mt-3 mb-3'>\par
+                <div className='input-group-prepend'>\par
+                  <span\par
+                    className='input-group-text profile-badge'\par
+                    id='basic-addon1'\par
+                  >\par
+                    <i className='bi bi-calendar'></i>\par
+                  </span>\par
+                </div>\par
+                <input\par
+                  type='date'\par
+                  id='DOB'\par
+                  className='form-control profile-input'\par
+                  placeholder=''\par
+                  aria-label='Username'\par
+                  aria-describedby='basic-addon1'\par
+                  value=\{formData.DOB\}\par
+                  onChange=\{(e) => \{\par
+                    setFormData(\{ ...formData, DOB: e.target.value \});\par
+                    setValidationErrors(\{ ...validationErrors, DOB: null \});\par
+                  \}\}\par
+                />\par
+              </div>\par
+              \{validationErrors.DOB && (\par
+                <span className='text-danger small'>\par
+                  \{validationErrors.DOB\}\par
+                </span>\par
+              )\}\par
+              <div className='input-group mt-3 mb-3'>\par
+                <div className='input-group-prepend'>\par
+                  <span\par
+                    className='input-group-text profile-badge'\par
+                    id='basic-addon1'\par
+                  >\par
+                    <i className='bi bi-buildings'></i>\par
+                  </span>\par
+                </div>\par
+                <input\par
+                  type='text'\par
+                  className='form-control profile-input'\par
+                  id='ShopName'\par
+                  placeholder='Shop Name'\par
+                  aria-label='Shop Name'\par
+                  aria-describedby='basic-addon1'\par
+                  value=\{formData.ShopName\}\par
+                  onChange=\{(e) => \{\par
+                    setFormData(\{ ...formData, ShopName: e.target.value \});\par
+                    setValidationErrors(\{\par
+                      ...validationErrors,\par
+                      ShopName: null,\par
+                    \});\par
+                  \}\}\par
+                />\par
+              </div>\par
+              \{validationErrors.ShopName && (\par
+                <span className='text-danger small'>\par
+                  \{validationErrors.ShopName\}\par
+                </span>\par
+              )\}\par
+              <div className='input-group mt-3 mb-3 email-optional'>\par
+                <div className='input-group-prepend'>\par
+                  <span\par
+                    className='input-group-text profile-badge'\par
+                    id='basic-addon1'\par
+                  >\par
+                    <i class='bi bi-envelope'></i>\par
+                  </span>\par
+                </div>\par
+                <input\par
+                  type='text'\par
+                  className='form-control profile-input'\par
+                  id='Email'\par
+                  placeholder='Email'\par
+                  aria-label='Email'\par
+                  aria-describedby='basic-addon1'\par
+                  value=\{formData.Email\}\par
+                  onChange=\{(e) => \{\par
+                    setFormData(\{ ...formData, Email: e.target.value \});\par
+                    // setValidationErrors(\{ ...validationErrors, Email: null \});\par
+                  \}\}\par
+                />\par
+                <div className='optional'>\par
+                  <span>Optional</span>\par
+                </div>\par
+              </div>\par
+              \{/* \{validationErrors.Email && (\par
+                <span className='text-danger'>\{validationErrors.Email\}</span>\par
+              )\} */\}\par
+              <div className='justify-content-center align-items-center d-flex mt-5'>\par
+                <button\par
+                  type='submit'\par
+                  className='btn-primary profile-btn justify-content-center align-items-center d-flex'\par
+                >\par
+                  Save & Continue\par
+                </button>\par
+              </div>\par
+            </form>\par
+          </div>\par
+        </div>\par
+      </div>\par
+    </div>\par
+  );\par
+\};\par
+\par
+export default Profile;\par
+}
+ 

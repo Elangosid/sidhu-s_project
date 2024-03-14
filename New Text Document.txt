@@ -1,0 +1,6 @@
+                  <a onClick={changeNumber} style={{ cursor: 'pointer' }}>
+                  Change Phone Number
+                </a>
+  const changeNumber = () => {
+    Navigate('/retailer-login');
+  };

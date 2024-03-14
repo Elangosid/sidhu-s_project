@@ -1,0 +1,117 @@
+.quickflo-footer {
+  background: linear-gradient(to right, #45bc1b, #088e5d);
+  padding-top: 50px;
+}
+
+.quickflo-footer .container-footer {
+  max-width: 1500px;
+}
+
+.container-footer .row {
+  padding-top: 10px;
+  padding-bottom: 40px;
+}
+
+.brand-footer img {
+  object-fit: contain;
+  width: 200px;
+  padding-bottom: 10px;
+}
+
+.brand-footer p {
+  color: #fff;
+  font-size: 16px;
+}
+
+.brand-footer p span {
+  font-size: 1.3rem;
+  padding-right: 12px;
+}
+
+.quick-links {
+  padding-top: 13px;
+  padding-left: 23px;
+}
+
+.quick-links h5 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+.quick-links ul {
+  margin-left: 0px;
+  padding-left: 0px; /* Add padding to create space for the bullet */
+}
+
+.quick-links ul li {
+  position: relative; /* Ensure the ::before pseudo-element is positioned relative to the li */
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px; /* Add padding to create space for the bullet */
+  transition: padding-left 0.5s ease;
+  color: #fff;
+  padding-bottom: 10px;
+}
+
+.quick-links ul li:hover {
+  padding-left: 17px;
+}
+.quick-links ul li::before {
+  content: '•'; /* Use a bullet character */
+  position: absolute; /* Position the bullet relative to the li */
+  top: -7px;
+  left: 0; /* Position the bullet at the start of the li */
+  transition: opacity 0.8s ease; /* Transition the opacity for a smooth effect */
+  opacity: 0; /* Initially hide the bullet */
+  font-size: 1.5rem; /* Increase the size of the bullet */
+  color: #fff;
+}
+
+.quick-links ul li:hover::before {
+  opacity: 1; /* Show the bullet on hover */
+}
+
+.quickflo-media i {
+  background-color: #fff;
+  padding: 10px 10px;
+  margin: 10px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  color: #088e5d;
+}
+
+.row .sign-up {
+  padding-top: 13px;
+  padding-left: 23px;
+}
+
+.row .sign-up h5 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  padding-bottom: 20px;
+}
+
+.row .sign-up p {
+  color: #fff;
+  font-size: 16px;
+}
+
+.row .sign-up img {
+  width: 120px;
+  padding-bottom: 10px;
+  display: block;
+}
+
+.quickflo-footer p {
+  color: #fff;
+  font-size: 16px;
+}
+
+.quickflo-footer .botom-footer {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  max-width: 1500px;
+}

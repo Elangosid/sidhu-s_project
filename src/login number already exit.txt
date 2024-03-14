@@ -1,0 +1,111 @@
+import React, { useState } from 'react';
+import './login.css';
+import { useNavigate } from 'react-router-dom';
+import * as Realm from 'realm-web';
+
+const Login = () => {
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [validationError, setValidationError] = useState('');
+  const Navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    if (/^\d{0,10}$/.test(value)) {
+      setMobileNumber(value);
+      setValidationError('');
+    }
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevent the default form submission
+    if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
+      setValidationError('Please enter a valid 10-digit mobile number');
+    } else {
+      // Initialize Realm app
+      const app = new Realm.App({ id: 'application-1-zyzrj' });
+
+      try {
+        // Authenticate anonymously
+        const user = await app.logIn(Realm.Credentials.anonymous());
+
+        // Get the Realm collection
+        const collection = user
+          .mongoClient('mongodb-atlas')
+          .db('QUIKFLO')
+          .collection('Retailer');
+
+        // Check if the mobile number already exists
+        const existingUser = await collection.findOne({
+          MobileNo: mobileNumber,
+        });
+
+        if (existingUser) {
+          // Mobile number already exists
+          console.log('Mobile number already exists');
+          // You can show a message to the user here if needed
+        } else {
+          // Store the mobile number in local storage
+          localStorage.setItem('mobileNumber', mobileNumber);
+          // Store the default OTP value (1234) in local storage
+          localStorage.setItem('otp', '1234');
+          // Navigate to the next page
+          Navigate('/retailer-Verify');
+        }
+      } catch (error) {
+        console.error('Failed to check mobile number:', error);
+      }
+    }
+  };
+
+  return (
+    <div className='number-background'>
+      <div className='container container-profile'>
+        <div className='row profile-row'>
+          <div className='profile-box'>
+            <h2 className='profile-head mb-3'>Enter Your Mobile Number</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur </p>
+            <form className='form-main' onSubmit={handleSubmit}>
+              <div className='input-group  mb-4'>
+                <div className='input-group-prepend'>
+                  <span
+                    className='input-group-text profile-badge'
+                    id='basic-addon1'
+                  >
+                    <i className='bi bi-telephone'></i>
+                  </span>
+                </div>
+                <input
+                  type='text'
+                  className='form-control profile-input'
+                  placeholder='+91'
+                  aria-describedby='basic-addon1'
+                  value={mobileNumber}
+                  onChange={handleChange}
+                />
+              </div>
+              {validationError && (
+                <span className='text-danger'>{validationError}</span>
+              )}
+              <p>
+                By proceeding you accept QuickFlo’s
+                <br />
+                <a className='terms' href='/#'>
+                  Terms and Conditions and Privacy Policy
+                </a>
+              </p>
+              <div className='justify-content-center align-items-center d-flex mt-5'>
+                <button
+                  type='submit'
+                  className='btn-primary profile-btn justify-content-center align-items-center d-flex'
+                >
+                  Verify Number
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Login;

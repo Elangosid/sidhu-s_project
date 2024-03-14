@@ -1,0 +1,76 @@
+@font-face {
+  font-family: 'face';
+  src: local('face'),
+    url('../../assets/font/Blinker/Blinker-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: local('Satoshi'),
+    url('../../assets/font/Satoshi_Complete/Fonts/OTF/Satoshi-Bold.otf')
+      format('opentype');
+}
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir'),
+    url('../../assets/font/Blinker/Avenir.otf') format('opentype');
+}
+
+.table thead {
+  background-color: rgb(67, 137, 199) !important;
+}
+.table {
+  font-family: Arial, Helvetica, sans-serif;
+}
+.btn {
+  border-radius: 20px;
+  background-color: #45bc1b;
+  border: solid #45bc1b;
+  font-family: face;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+h2 {
+  font-family: Avenir;
+  font-weight: 750;
+}
+th,
+td {
+  font-family: satoshi;
+}
+/* Media Query */
+/* Custom styles for smaller screens */
+@media (max-width: 767px) {
+  .table {
+    overflow-x: auto;
+    display: block;
+  }
+
+  .table thead,
+  .table tbody,
+  .table th,
+  .table td,
+  .table tr {
+    display: block;
+  }
+
+  .table thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  .table tr {
+    margin-bottom: 15px;
+  }
+
+  .table td,
+  .table th {
+    display: block;
+    text-align: left;
+  }
+
+  .table tbody tr {
+    border: 1px solid #ccc; /* Add border for better visibility */
+  }
+}

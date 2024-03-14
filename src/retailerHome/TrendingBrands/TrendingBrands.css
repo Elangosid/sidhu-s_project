@@ -1,0 +1,46 @@
+.slider-section {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  background-color: #c8ebbb;
+}
+
+.slider-main {
+  background-color: #fff;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.slider-content h6 {
+  color: red;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.slider-content h5 {
+  color: #000;
+}
+
+.slider-content p {
+  color: #009300;
+  font-size: 0.9rem;
+}
+
+.slider-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-content {
+  display: flex;
+  align-items: center;
+}
+
+.vertical-line {
+  border: 1px solid #c2bcbc; /* Outer border */
+  outline: 1px solid white; /* Inner border */
+  padding: 1px; /* Add padding to prevent content from touching the borders */
+  border-top: none;
+  border-bottom: none;
+  width: 0px;
+}

@@ -1,0 +1,19 @@
+.span-badge-trending {
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  border: solid #45bc1b;
+  background-color: #45bc1b;
+  color: white;
+  position: absolute;
+  top: 130px;
+  left: 100px;
+  font-weight: 200;
+}
+#trending-button-add {
+  width: 50px;
+  height: 30px;
+  border: solid #45bc1b;
+  border-radius: 6px;
+  background-color: #fff;
+}

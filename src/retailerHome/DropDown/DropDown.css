@@ -1,0 +1,133 @@
+@font-face {
+  font-family: 'face';
+  src: local('face'),
+    url('../../assets/font/Blinker/Blinker-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: local('Satoshi'),
+    url('../../assets/font/Satoshi_Complete/Fonts/OTF/Satoshi-Bold.otf')
+      format('opentype');
+}
+
+@font-face {
+  font-family: 'Satoshi-medium';
+  src: local('Satoshi'),
+    url('../../assets/font/Satoshi_Complete/Fonts/OTF/Satoshi-Medium.otf')
+      format('opentype');
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir'),
+    url('../../assets/font/Blinker/Avenir.otf') format('opentype');
+}
+
+/* ______________________________________________________ */
+.sidebarmenu {
+  width: 100%;
+  font-family: 'Satoshi-medium';
+  font-size: 0.99rem;
+}
+
+.sidebarmenu-sub li {
+  list-style: none;
+}
+
+.sub-menu {
+  display: none;
+  list-style: none;
+}
+
+.slide-down {
+  display: block;
+}
+
+.sub-menu {
+  display: block;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+}
+
+.slide-down {
+  max-height: 200px;
+}
+
+/* ___________hover bullet_______________________ */
+
+.sidebarmenu-sub,
+.sub-menu {
+  margin-bottom: 5px;
+  margin-left: 0px;
+  padding-left: 0px; /* Add padding to create space for the bullet */
+}
+
+.sidebarmenu-sub li,
+.sub-menu li {
+  position: relative; /* Ensure the ::before pseudo-element is positioned relative to the li */
+  list-style: none;
+  margin-left: 0px;
+  padding-left: 0px; /* Add padding to create space for the bullet */
+  transition: padding-left 0.3s ease;
+  color: black;
+  padding-bottom: 10px;
+}
+
+.sidebarmenu-sub li:hover,
+.sub-menu li:hover {
+  padding-left: 17px;
+  color: #45bc1b;
+}
+.sidebarmenu-sub li::before,
+.sub-menu li::before {
+  content: '▪'; /* Use a bullet character */
+
+  position: absolute; /* Position the bullet relative to the li */
+  top: -7px;
+  left: 0; /* Position the bullet at the start of the li */
+  transition: opacity 0.5s ease; /* Transition the opacity for a smooth effect */
+  opacity: 0; /* Initially hide the bullet */
+  font-size: 1.3rem; /* Increase the size of the bullet */
+  color: black;
+  margin-top: 4px;
+}
+
+.sidebarmenu-sub li:hover::before,
+.sub-menu li:hover::before {
+  opacity: 1; /* Show the bullet on hover */
+  color: #45bc1b;
+}
+
+.sidebarmenu .sub-menu {
+  padding-left: 30px;
+}
+
+.sidebarmenu .sub-menu li {
+  color: #504f4f;
+}
+
+.sidebarmenu .sub-menu li:hover {
+  color: #45bc1b;
+}
+
+/* ___________________________ */
+
+.menu-item {
+  display: inline-block;
+}
+.sidebarmenu-sub button {
+  float: right;
+  border: none;
+  background-color: #fff;
+  color: #45bc1b;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+.sidebarmenu-sub button i {
+  border: 1px solid #d7d7d7;
+  padding: 3px 3px 0px 3px;
+  border-radius: 3px;
+}

@@ -1,0 +1,151 @@
+@font-face {
+  font-family: 'face';
+  src: local('face'),
+    url('../../assets/font/Blinker/Blinker-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: local('Satoshi'),
+    url('../../assets/font/Satoshi_Complete/Fonts/OTF/Satoshi-Bold.otf')
+      format('opentype');
+}
+
+@font-face {
+  font-family: 'Satoshi-medium';
+  src: local('Satoshi'),
+    url('../../assets/font/Satoshi_Complete/Fonts/OTF/Satoshi-Regular.otf')
+      format('opentype');
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir'),
+    url('../../assets/font/Blinker/Avenir.otf') format('opentype');
+}
+
+/* ___________________________ */
+
+.number-background {
+  width: 100%;
+  height: 100%;
+  background-color: #f3f3f3;
+}
+
+.container-profile {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%; /* Ensure box doesn't exceed viewport width */
+  max-height: 100%; /* Ensure box doesn't exceed viewport height */
+}
+
+.profile-box {
+  padding: 40px 40px;
+  width: 500px;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.profile-row .profile-box h2 {
+  font-family: 'Avenir';
+  font-size: 1.8rem;
+  background-image: linear-gradient(to right, #0f0f0f, #196000);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.profile-row .profile-box p {
+  color: #818281 !important;
+  text-align: left;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: 'Satoshi-medium';
+}
+
+.profile-upload {
+  display: inline-block;
+  width: 100px !important;
+  height: 100px !important;
+  background-color: #c8ebbb; /* Change the background color as needed */
+  border-radius: 50% !important;
+  text-align: center;
+  line-height: 60px;
+  cursor: pointer;
+  color: #0f3b00; /* Change the text color as needed */
+  transition: background-color 0.3s ease; /* Add a transition effect for a smoother hover effect */
+}
+
+.profile-upload:hover {
+  background-color: #c8ebbb;
+}
+
+.input-group .profile-label {
+  position: relative;
+}
+input::placeholder {
+  font-size: 14px;
+  color: #909090;
+}
+
+.input-group .profile-label .label-cam {
+  background-color: #45bc1b;
+  padding: 8px 10px;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: 65px;
+}
+
+.input-group .profile-badge {
+  padding: 10px 15px;
+  border-radius: 6px 0 0 6px;
+
+  font-size: 1.2rem;
+  background-color: #fff;
+  border-color: #45bc1b !important;
+  color: #45bc1b;
+}
+
+.input-group .profile-input {
+  border-radius: 0px 6px 6px 0px;
+  border-color: #45bc1b;
+  border-left: none;
+}
+
+.input-group .profile-input:focus {
+  box-shadow: none;
+  border-color: #45bc1b !important;
+}
+
+.profile-box form button {
+  width: 300px;
+  height: 40px;
+  border-radius: 20px;
+  border-color: #45bc1b;
+  background-color: #45bc1b;
+  color: #fff;
+  border: none !important;
+}
+
+.profile-box form button:focus {
+  box-shadow: none;
+  border-color: #45bc1b;
+  background-color: #45bc1b;
+}
+.terms {
+  color: #45bc1b;
+}
+
+a {
+  text-decoration: none !important;
+  font-family: 'Satoshi-medium';
+}

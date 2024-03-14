@@ -1,0 +1,234 @@
+@font-face {
+  font-family: 'face';
+  src: local('face'),
+    url('../../assets/font/Blinker/Blinker-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: local('Satoshi'),
+    url('../../assets/font/Satoshi_Complete/Fonts/OTF/Satoshi-Bold.otf')
+      format('opentype');
+}
+
+@font-face {
+  font-family: 'Satoshi-medium';
+  src: local('Satoshi'),
+    url('../../assets/font/Satoshi_Complete/Fonts/OTF/Satoshi-Regular.otf')
+      format('opentype');
+}
+
+@font-face {
+  font-family: 'Avenir';
+  src: local('Avenir'),
+    url('../../assets/font/Blinker/Avenir.otf') format('opentype');
+}
+
+/* ______________________________________________________ */
+
+.subCategory-container {
+  max-width: 1500px;
+}
+
+.subCategory-container .subCategory-headpage {
+  margin-top: 50px;
+  background-color: #f2f8db;
+  padding: 40px 60px;
+  text-align: center;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.subCategory-container .subCategory-headpage h1 {
+  font-family: 'Avenir';
+  font-size: 2.2rem;
+}
+.subCategory-container .subCategory-headpage p {
+  font-family: 'Satoshi-medium';
+  font-size: 1rem;
+}
+
+.single-category {
+  display: flex;
+  flex-direction: row;
+  padding: 5px 5px;
+  margin: 10px;
+}
+
+.single-category .sub-img {
+  padding: 10px 10px;
+  background-color: #a1ffd8;
+  border-radius: 50%;
+}
+
+.sub-img img {
+  object-fit: contain;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.sub-img img:hover {
+  transform: scale(1.1);
+}
+
+.single-category .sub-text {
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.single-category .sub-text .sub-name {
+  font-size: 15px;
+  color: black;
+  font-weight: 500;
+}
+.single-category .sub-text p {
+  margin-bottom: 0px;
+  text-align: left;
+  font-size: 14px;
+  color: #626571;
+  font-weight: 500;
+  font-family: 'Satoshi';
+}
+
+/* ______________filter section___________________ */
+
+.subCategory-container .subCategory-products {
+  padding-top: 60px;
+  border-bottom: 60px;
+}
+
+.filter .filter-price {
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.filter-price h3 {
+  font-family: 'Satoshi';
+  font-size: 1.5rem;
+}
+
+.colored-hr {
+  border: 1.5px solid #45bc1b;
+  width: 80px;
+  border-radius: 10px;
+  margin-bottom: 0px;
+}
+
+.filter-price .range-field {
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.range-input .min-value {
+  width: 100px;
+}
+.range-input .min-value:focus {
+  outline: none;
+}
+
+.range-input .max-value {
+  width: 100px;
+  float: right;
+}
+
+.range-input .max-value:focus {
+  outline: none;
+}
+
+/* __________Product Categories_______________ */
+
+.categories-filter .categories-fill {
+  padding: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+}
+
+.categories-fill h3 {
+  font-family: 'Satoshi';
+  font-size: 1.5rem;
+}
+
+.check-box {
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+}
+
+.check-box label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: 'Satoshi-medium';
+  font-size: 0.9rem;
+  color: #474747;
+}
+
+.check-box input[type='checkbox'] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.76px solid #45bc1b;
+  border-radius: 3px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.check-box input[type='checkbox']:checked {
+  background-color: #45bc1b;
+  line-height: 15px;
+}
+
+.check-box input[type='checkbox']:checked::before {
+  content: '\2713';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+}
+
+.categories-fill button {
+  border-radius: 20px;
+  background-color: #45bc1b;
+  font-size: 0.9rem;
+  color: #fff;
+  border: 1px solid #45bc1b;
+  padding: 5px 20px;
+}
+
+/* _________drop down_________ */
+
+.sort-price {
+  font-family: 'Satoshi-medium';
+  font-size: 0.9rem;
+}
+
+.product-show {
+  font-family: 'Satoshi-medium';
+  font-size: 0.9rem;
+}
+
+.filter-btn button {
+  padding: 5px 20px;
+  border: 1px solid #45bc1b;
+  background-color: #fff;
+  font-family: 'Satoshi-medium';
+  font-size: 1rem;
+  border-radius: 8px;
+}
+
+.filter-btn button span {
+  color: #45bc1b;
+}
+
+.filter-btn button:hover {
+  background-color: #45bc1b;
+  font-family: 'Satoshi-medium';
+  color: #ffff;
+}
+
+.filter-btn button:hover span {
+  color: #ffff;
+}

@@ -1,0 +1,278 @@
+.banner-section {
+  padding-top: 35px;
+  padding-bottom: 35px;
+}
+
+.edit-prev {
+  padding: 10px;
+  background-color: #45bc1b;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.edit-right {
+  padding: 10px 10px;
+  background-color: #45bc1b;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carousel-control-prev.edit-prev {
+  animation-name: moveLeft;
+}
+
+.carousel-control-next.edit-right {
+  animation-name: moveRight;
+}
+
+@keyframes moveLeft {
+  0% {
+    left: 15%;
+  }
+  100% {
+    left: 5.5%;
+  }
+}
+
+@keyframes moveRight {
+  0% {
+    right: 10%;
+  }
+  100% {
+    right: 1%;
+  }
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  animation-duration: 0.7s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.carousel-img img {
+  height: 495px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* _____________ */
+
+.banner-first {
+  position: absolute;
+  top: 30%;
+  text-align: left;
+}
+.banner-first h5 {
+  font-size: 3rem;
+  color: #45bc1b;
+  padding-bottom: 10px;
+  font-weight: 700;
+}
+
+.banner-first p {
+  font-size: 1.1rem;
+  padding-bottom: 10px;
+  color: #000;
+  font-weight: 600;
+}
+
+.banner-first button {
+  padding: 10px 40px;
+  border: none;
+  background-color: #45bc1b;
+  color: #fff;
+  border-radius: 30px;
+}
+
+.banner-first button:hover {
+  border-color: #45bc1b;
+  background-color: #fff;
+  color: #45bc1b;
+  border-radius: 30px;
+  transition: 0.4s ease;
+}
+
+.banner-first button .right-arrow {
+  border-radius: 50%;
+  background-color: #fff;
+  color: #45bc1b;
+  font-size: 0.6rem;
+  padding: 5px 6px 4px 6px;
+  font-weight: 900;
+  margin-left: 4px;
+}
+
+.banner-first button:hover .right-arrow {
+  background-color: #45bc1b;
+  color: #fff;
+}
+
+/* _____________ */
+
+.products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px; /* Optional: Add gap between grid items */
+  background-color: #ffc6c8;
+  padding: 13px;
+  border-radius: 8px;
+}
+
+.products-grid > .single-products {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+.single-products .product-img {
+  width: 90px;
+  height: 90px;
+}
+
+.more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.more p {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #616161;
+}
+
+/* ------------- Banner second------------- */
+
+.banner-second .second-img {
+  width: 100%;
+  height: 250px;
+  margin-bottom: 15px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.banner-second {
+  position: relative;
+}
+
+.banner-second .second-content {
+  position: absolute;
+  top: 23%;
+  padding-left: 30px;
+}
+
+.banner-second .second-content h5 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #45bc1b;
+}
+
+.banner-second .second-content p {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.banner-second .second-content button {
+  padding: 10px 40px;
+  border: none;
+  background-color: #45bc1b;
+  color: #fff;
+  border-radius: 30px;
+}
+
+.banner-second .second-content button:hover {
+  border-color: #45bc1b;
+  background-color: #fff;
+  color: #45bc1b;
+  border-radius: 30px;
+  transition: 0.4s ease;
+}
+
+.second-content button .right-arrow {
+  border-radius: 50%;
+  background-color: #fff;
+  color: #45bc1b;
+  font-size: 0.6rem;
+  padding: 5px 6px 4px 6px;
+  font-weight: 900;
+  margin-left: 4px;
+}
+
+.second-content button:hover .right-arrow {
+  background-color: #45bc1b;
+  color: #fff;
+}
+
+/* ------------- Banner end------------- */
+
+/* ------------- Banner end------------- */
+.banner-third .third-img {
+  width: 100%;
+  height: 230px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.banner-third {
+  position: relative;
+}
+
+.banner-third .third-content {
+  position: absolute;
+  top: 10%;
+  padding: 30px;
+}
+
+.banner-third .third-content h5 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #45bc1b;
+}
+
+.banner-third .third-content p {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.banner-third .third-content button {
+  padding: 10px 40px;
+  border: none;
+  background-color: #45bc1b;
+  color: #fff;
+  border-radius: 30px;
+}
+
+.banner-third .third-content button:hover {
+  border-color: #45bc1b;
+  background-color: #fff;
+  color: #45bc1b;
+  border-radius: 30px;
+  transition: 0.4s ease;
+}
+
+.third-content button .right-arrow {
+  border-radius: 50%;
+  background-color: #fff;
+  color: #45bc1b;
+  font-size: 0.6rem;
+  padding: 5px 6px 4px 6px;
+  font-weight: 900;
+  margin-left: 4px;
+}
+
+.third-content button:hover .right-arrow {
+  background-color: #45bc1b;
+  color: #fff;
+}
